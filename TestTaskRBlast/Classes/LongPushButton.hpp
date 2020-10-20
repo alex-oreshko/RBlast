@@ -15,7 +15,7 @@ public:
     
     void setLongPushAction(std::function<void()> callback);
 
-    ~LongPushButton() {}
+    ~LongPushButton() {LOG("~LongPushButton\n");}
     
 protected:
     

@@ -91,8 +91,8 @@ bool HelloWorld::init()
     auto dragout = Sprite::create("dragout.png");
     
     Rect content = Rect(idle->getContentSize() / -2, idle->getContentSize());
-    Rect expand = Rect(content.origin - Point(20, 20), Size(content.size.width + 40, content.size.height + 40));
-    Rect safe = Rect(content.origin - Point(40, 40), Size(content.size.width + 80, content.size.height + 80));
+    Rect expand = Rect(content.origin - Point(20, 20), content.size + Size(40, 40));
+    Rect safe = Rect(content.origin - Point(40, 40), content.size + Size(80, 80));
     
     button = Button::create(content, expand, safe);
     button->setPosition(Vec2(150, 150));
@@ -134,8 +134,8 @@ bool HelloWorld::init()
     
     Sprite* lpbImage = Sprite::create("lpb.png");
     content = Rect(lpbImage->getContentSize() / -2, lpbImage->getContentSize());
-    expand = Rect(content.origin - Point(20, 20), Size(content.size.width + 40, content.size.height + 40));
-    safe = Rect(content.origin - Point(40, 40), Size(content.size.width + 80, content.size.height + 80));
+    expand = Rect(content.origin - Point(20, 20), content.size + Size(40, 40));
+    safe = Rect(content.origin - Point(40, 40), content.size + Size(80, 80));
     
     longPushButton = LongPushButton::create(content, expand, safe);
     longPushButton->setPosition(Vec2(150, 350));

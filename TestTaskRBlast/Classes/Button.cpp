@@ -41,10 +41,11 @@ bool Button::init(Rect content, Rect expand, Rect safe)
 
 Button::~Button()
 {
+    LOG("~Button\n");
     for (Vector<Node*>::iterator it = items.begin() ; it != items.end(); ++it)
     {
         Node* node = *it;
-        int* states = (int*)node->getUserData();
+        char* states = (char*)node->getUserData();
         free(states);
     }
     items.clear();
@@ -100,18 +101,18 @@ void Button::setState(State state)
     for (Vector<Node*>::iterator it = items.begin() ; it != items.end(); ++it)
     {
         Node* node = *it;
-        int* states = (int*)node->getUserData();
+        char* states = (char*)node->getUserData();
         node->setVisible(*(states + state) == 1);
     }
 }
 
 void Button::addItem(Node* item, State state)
 {
-    int *states;
+    char *states;
     if (!items.contains(item))
     {
         items.pushBack(item);
-        int* states = (int*)malloc(sizeof(int) * (LONGPUSH + 1));
+        char* states = (char*)malloc(sizeof(char) * (LONGPUSH + 1));
         for (int i = 0; i <= LONGPUSH; i++)
             *(states + i) = (i == state)?1:0;
         item->setUserData(states);
@@ -120,7 +121,7 @@ void Button::addItem(Node* item, State state)
     }
     else
     {
-        states = (int*)item->getUserData();
+        states = (char*)item->getUserData();
         *(states + state) = 1;
     }
 }
@@ -207,20 +208,17 @@ void Button::onTouchCancelled(Touch *pTouch, Event *pEvent)
 bool Button::touchInContentZone(Touch *pTouch)
 {
     Point p = convertTouchToNodeSpace(pTouch);
-    Rect r(_content.origin, _content.size);
-    return r.containsPoint(p);
+    return _content.containsPoint(p);
 }
 
 bool Button::touchInExpandZone(Touch *pTouch)
 {
     Point p = convertTouchToNodeSpace(pTouch);
-    Rect r(_expand.origin, _expand.size);
-    return r.containsPoint(p);
+    return _expand.containsPoint(p);
 }
 
 bool Button::touchInSafeZone(Touch *pTouch)
 {
     Point p = convertTouchToNodeSpace(pTouch);
-    Rect r(_safe.origin, _safe.size);
-    return r.containsPoint(p);
+    return _safe.containsPoint(p);
 }

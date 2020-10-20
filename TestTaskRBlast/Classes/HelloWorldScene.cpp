@@ -25,6 +25,8 @@
 #include "HelloWorldScene.h"
 #include "SimpleAudioEngine.h"
 
+#include "Defines.h"
+
 USING_NS_CC;
 
 Scene* HelloWorld::createScene()
@@ -80,41 +82,86 @@ bool HelloWorld::init()
     menu->setPosition(Vec2::ZERO);
     this->addChild(menu, 1);
 
-    /////////////////////////////
-    // 3. add your codes below...
+    square = Sprite::create("square.png");
+    square->setPosition(Point(260, 400));
+    addChild(square);
+    
+    auto idle = Sprite::create("idle.png");
+    auto pushed = Sprite::create("pushed.png");
+    auto dragout = Sprite::create("dragout.png");
+    
+    Rect content = Rect(idle->getContentSize() / -2, idle->getContentSize());
+    Rect expand = Rect(content.origin - Point(20, 20), Size(content.size.width + 40, content.size.height + 40));
+    Rect safe = Rect(content.origin - Point(40, 40), Size(content.size.width + 80, content.size.height + 80));
+    
+    button = Button::create(content, expand, safe);
+    button->setPosition(Vec2(150, 150));
+    button->addItem(idle, Button::State::IDLE);
+    button->addItem(pushed, Button::State::PUSHED);
+    button->addItem(dragout, Button::State::DRAGOUT);
+    addChild(button);
+    
+    button->setAction([&](){
+        auto big = ScaleTo::create(0.1f, 1.2f);
+        auto small = ScaleTo::create(0.1f, 1.0f);
+        auto action = Sequence::createWithTwoActions(big, small);
+        square->runAction(action);
+        auto rotate = RotateBy::create(0.1f, rand() % 720 - 360);
+        auto scale = ScaleTo::create(0.1, 0.8 + (rand() % 40) / 100.0, 0.8 + (rand() % 40) / 100.0);
+        auto spawn = Spawn::createWithTwoActions(rotate, scale);
+        button->runAction(spawn);
+    });
+    
+    auto idleAndPushed = Label::createWithSystemFont("idle or pushed", "Tahoma", 15);
+    idleAndPushed->setPosition(Point(10, 80));
+    button->addItem(idleAndPushed, Button::State::IDLE);
+    button->addItem(idleAndPushed, Button::State::PUSHED);
+    
+    auto pushedAndDragout = Label::createWithSystemFont("pushed or dragout", "Tahoma", 15);
+    pushedAndDragout->setPosition(Point(10, 100));
+    button->addItem(pushedAndDragout, Button::State::DRAGOUT);
+    button->addItem(pushedAndDragout, Button::State::PUSHED);
+    
+    auto dragoutAndIdle = Label::createWithSystemFont("dragou or idle", "Tahoma", 15);
+    dragoutAndIdle->setPosition(Point(10, 120));
+    button->addItem(dragoutAndIdle, Button::State::IDLE);
+    button->addItem(dragoutAndIdle, Button::State::DRAGOUT);
 
-    // add a label shows "Hello World"
-    // create and initialize a label
+    
+    button->setRotation(10);
+    
+    // long push button
+    
+    Sprite* lpbImage = Sprite::create("lpb.png");
+    content = Rect(lpbImage->getContentSize() / -2, lpbImage->getContentSize());
+    expand = Rect(content.origin - Point(20, 20), Size(content.size.width + 40, content.size.height + 40));
+    safe = Rect(content.origin - Point(40, 40), Size(content.size.width + 80, content.size.height + 80));
+    
+    longPushButton = LongPushButton::create(content, expand, safe);
+    longPushButton->setPosition(Vec2(150, 350));
+    longPushButton->addItem(lpbImage, Button::IDLE);
+    longPushButton->addItem(lpbImage, Button::PUSHED);
+    longPushButton->addItem(lpbImage, Button::DRAGOUT);
+    
+    Sprite* lpbImage2 = Sprite::create("lpb2.png");
+    longPushButton->addItem(lpbImage2, Button::LONGPUSH);
+    
+    addChild(longPushButton);
+    
+    longPushButton->setAction([&](){
+        auto rotate = RotateBy::create(0.1f, 360);
+        square->runAction(rotate);
+    });
+    
+    longPushButton->setLongPushAction([&](){
+        auto rotateSelf = RotateBy::create(0.1f, rand() % 720 - 360);
+        auto scale = ScaleTo::create(0.1, 0.8 + (rand() % 40) / 100.0, 0.8 + (rand() % 40) / 100.0);
+        auto spawn = Spawn::createWithTwoActions(rotateSelf, scale);
+        longPushButton->runAction(spawn);
+    });
+    
 
-    auto label = Label::createWithTTF("Hello World", "fonts/Marker Felt.ttf", 24);
-    if (label == nullptr)
-    {
-        problemLoading("'fonts/Marker Felt.ttf'");
-    }
-    else
-    {
-        // position the label on the center of the screen
-        label->setPosition(Vec2(origin.x + visibleSize.width/2,
-                                origin.y + visibleSize.height - label->getContentSize().height));
-
-        // add the label as a child to this layer
-        this->addChild(label, 1);
-    }
-
-    // add "HelloWorld" splash screen"
-    auto sprite = Sprite::create("HelloWorld.png");
-    if (sprite == nullptr)
-    {
-        problemLoading("'HelloWorld.png'");
-    }
-    else
-    {
-        // position the sprite on the center of the screen
-        sprite->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
-
-        // add the sprite as a child to this layer
-        this->addChild(sprite, 0);
-    }
+        
     return true;
 }
 

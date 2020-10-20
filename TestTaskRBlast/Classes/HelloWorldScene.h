@@ -26,6 +26,9 @@
 #define __HELLOWORLD_SCENE_H__
 
 #include "cocos2d.h"
+#include "Button.hpp"
+#include "LongPushButton.hpp"
+
 
 class HelloWorld : public cocos2d::Scene
 {
@@ -39,6 +42,11 @@ public:
     
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
+    
+private:
+    cocos2d::Sprite *square;
+    Button* button;
+    LongPushButton* longPushButton;
 };
 
 #endif // __HELLOWORLD_SCENE_H__

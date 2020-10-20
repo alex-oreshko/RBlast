@@ -31,6 +31,22 @@
 		46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46880B8419C43A87006E1F66 /* AppDelegate.cpp */; };
 		46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46880B8619C43A87006E1F66 /* HelloWorldScene.cpp */; };
 		46880B8B19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46880B8619C43A87006E1F66 /* HelloWorldScene.cpp */; };
+		4B306A8C253D4AD900A65B30 /* pushed.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B306A89253D4AD800A65B30 /* pushed.png */; };
+		4B306A8D253D4AD900A65B30 /* pushed.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B306A89253D4AD800A65B30 /* pushed.png */; };
+		4B306A8E253D4AD900A65B30 /* idle.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B306A8A253D4AD800A65B30 /* idle.png */; };
+		4B306A8F253D4AD900A65B30 /* idle.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B306A8A253D4AD800A65B30 /* idle.png */; };
+		4B306A90253D4AD900A65B30 /* dragout.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B306A8B253D4AD900A65B30 /* dragout.png */; };
+		4B306A91253D4AD900A65B30 /* dragout.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B306A8B253D4AD900A65B30 /* dragout.png */; };
+		4B306A95253D76FE00A65B30 /* square.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B306A94253D76FD00A65B30 /* square.png */; };
+		4B306A96253D76FE00A65B30 /* square.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B306A94253D76FD00A65B30 /* square.png */; };
+		4B306A9A253D9C3600A65B30 /* LongPushButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4B306A98253D9C3600A65B30 /* LongPushButton.cpp */; };
+		4B306A9B253D9C3600A65B30 /* LongPushButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4B306A98253D9C3600A65B30 /* LongPushButton.cpp */; };
+		4BB07585253B7884007A33C8 /* Button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4BB07583253B7884007A33C8 /* Button.cpp */; };
+		4BB07586253B7884007A33C8 /* Button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4BB07583253B7884007A33C8 /* Button.cpp */; };
+		4BEA0194253E563000CE86EB /* lpb.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BEA0193253E563000CE86EB /* lpb.png */; };
+		4BEA0195253E563000CE86EB /* lpb.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BEA0193253E563000CE86EB /* lpb.png */; };
+		4BEA019B253E60E600CE86EB /* lpb2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BEA019A253E60E600CE86EB /* lpb2.png */; };
+		4BEA019C253E60E600CE86EB /* lpb2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BEA019A253E60E600CE86EB /* lpb2.png */; };
 		503AE0F817EB97AB00D1A890 /* Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 503AE0F617EB97AB00D1A890 /* Icon.icns */; };
 		503AE10517EB98FF00D1A890 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 503AE10317EB98FF00D1A890 /* main.cpp */; };
 		503AE11B17EB9C5A00D1A890 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 503AE11A17EB9C5A00D1A890 /* IOKit.framework */; };
@@ -121,6 +137,17 @@
 		46880B8519C43A87006E1F66 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		46880B8619C43A87006E1F66 /* HelloWorldScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HelloWorldScene.cpp; sourceTree = "<group>"; };
 		46880B8719C43A87006E1F66 /* HelloWorldScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelloWorldScene.h; sourceTree = "<group>"; };
+		4B306A89253D4AD800A65B30 /* pushed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pushed.png; sourceTree = "<group>"; };
+		4B306A8A253D4AD800A65B30 /* idle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = idle.png; sourceTree = "<group>"; };
+		4B306A8B253D4AD900A65B30 /* dragout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dragout.png; sourceTree = "<group>"; };
+		4B306A93253D591700A65B30 /* Defines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Defines.h; sourceTree = "<group>"; };
+		4B306A94253D76FD00A65B30 /* square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square.png; sourceTree = "<group>"; };
+		4B306A98253D9C3600A65B30 /* LongPushButton.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LongPushButton.cpp; sourceTree = "<group>"; };
+		4B306A99253D9C3600A65B30 /* LongPushButton.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LongPushButton.hpp; sourceTree = "<group>"; };
+		4BB07583253B7884007A33C8 /* Button.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Button.cpp; sourceTree = "<group>"; };
+		4BB07584253B7884007A33C8 /* Button.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Button.hpp; sourceTree = "<group>"; };
+		4BEA0193253E563000CE86EB /* lpb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lpb.png; sourceTree = "<group>"; };
+		4BEA019A253E60E600CE86EB /* lpb2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lpb2.png; sourceTree = "<group>"; };
 		503AE0F617EB97AB00D1A890 /* Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Icon.icns; sourceTree = "<group>"; };
 		503AE0F717EB97AB00D1A890 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		503AE10317EB98FF00D1A890 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = mac/main.cpp; sourceTree = "<group>"; };
@@ -268,6 +295,12 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4BEA019A253E60E600CE86EB /* lpb2.png */,
+				4BEA0193253E563000CE86EB /* lpb.png */,
+				4B306A94253D76FD00A65B30 /* square.png */,
+				4B306A8B253D4AD900A65B30 /* dragout.png */,
+				4B306A8A253D4AD800A65B30 /* idle.png */,
+				4B306A89253D4AD800A65B30 /* pushed.png */,
 				521A8EA819F11F5000D177D7 /* fonts */,
 				3EACC98E19EE6D4300EB3C5E /* res */,
 				46880B7619C43A67006E1F66 /* CloseNormal.png */,
@@ -285,6 +318,11 @@
 				46880B8519C43A87006E1F66 /* AppDelegate.h */,
 				46880B8619C43A87006E1F66 /* HelloWorldScene.cpp */,
 				46880B8719C43A87006E1F66 /* HelloWorldScene.h */,
+				4BB07583253B7884007A33C8 /* Button.cpp */,
+				4BB07584253B7884007A33C8 /* Button.hpp */,
+				4B306A93253D591700A65B30 /* Defines.h */,
+				4B306A98253D9C3600A65B30 /* LongPushButton.cpp */,
+				4B306A99253D9C3600A65B30 /* LongPushButton.hpp */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -356,6 +394,11 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0500;
+				TargetAttributes = {
+					1D6058900D05DD3D006BFB54 = {
+						DevelopmentTeam = V68K7ZYY8N;
+					};
+				};
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "TestTaskRBlast" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -413,12 +456,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				46880B8119C43A67006E1F66 /* HelloWorld.png in Resources */,
+				4B306A8E253D4AD900A65B30 /* idle.png in Resources */,
 				1A88B2641FC3D9C9005C14AE /* Images.xcassets in Resources */,
 				46880B7D19C43A67006E1F66 /* CloseSelected.png in Resources */,
 				521A8EA919F11F5000D177D7 /* fonts in Resources */,
+				4BEA019B253E60E600CE86EB /* lpb2.png in Resources */,
 				3EACC98F19EE6D4300EB3C5E /* res in Resources */,
+				4B306A8C253D4AD900A65B30 /* pushed.png in Resources */,
+				4B306A90253D4AD900A65B30 /* dragout.png in Resources */,
 				1AF87B891F6F781D007BE51C /* LaunchScreenBackground.png in Resources */,
 				46880B7B19C43A67006E1F66 /* CloseNormal.png in Resources */,
+				4B306A95253D76FE00A65B30 /* square.png in Resources */,
+				4BEA0194253E563000CE86EB /* lpb.png in Resources */,
 				1AF87B881F6F781D007BE51C /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -427,12 +476,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B306A91253D4AD900A65B30 /* dragout.png in Resources */,
 				46880B8219C43A67006E1F66 /* HelloWorld.png in Resources */,
+				4B306A96253D76FE00A65B30 /* square.png in Resources */,
+				4B306A8F253D4AD900A65B30 /* idle.png in Resources */,
 				503AE0F817EB97AB00D1A890 /* Icon.icns in Resources */,
 				3EACC99019EE6D4300EB3C5E /* res in Resources */,
 				521A8EAA19F11F5000D177D7 /* fonts in Resources */,
 				46880B7C19C43A67006E1F66 /* CloseNormal.png in Resources */,
+				4B306A8D253D4AD900A65B30 /* pushed.png in Resources */,
 				46880B7E19C43A67006E1F66 /* CloseSelected.png in Resources */,
+				4BEA0195253E563000CE86EB /* lpb.png in Resources */,
+				4BEA019C253E60E600CE86EB /* lpb2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,7 +502,9 @@
 				1AF87B8B1F6F782A007BE51C /* RootViewController.mm in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				1AF87B8A1F6F7822007BE51C /* main.m in Sources */,
+				4B306A9A253D9C3600A65B30 /* LongPushButton.cpp in Sources */,
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
+				4BB07585253B7884007A33C8 /* Button.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,7 +514,9 @@
 			files = (
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
+				4B306A9B253D9C3600A65B30 /* LongPushButton.cpp in Sources */,
 				46880B8B19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
+				4BB07586253B7884007A33C8 /* Button.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -482,13 +541,13 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				COMPRESS_PNG_FILES = NO;
+				DEVELOPMENT_TEAM = V68K7ZYY8N;
 				ENABLE_BITCODE = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ios/Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_FILE32API,
 					"COCOS2D_DEBUG=1",
@@ -516,12 +575,12 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				COMPRESS_PNG_FILES = NO;
+				DEVELOPMENT_TEAM = V68K7ZYY8N;
 				ENABLE_BITCODE = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ios/Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_FILE32API,
 					"CC_ENABLE_CHIPMUNK_INTEGRATION=1",
@@ -554,7 +613,6 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = mac/Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_FILE32API,
 					"COCOS2D_DEBUG=1",
@@ -584,7 +642,6 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = mac/Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_FILE32API,
 					"CC_ENABLE_CHIPMUNK_INTEGRATION=1",

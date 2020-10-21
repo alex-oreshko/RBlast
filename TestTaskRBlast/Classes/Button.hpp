@@ -8,9 +8,6 @@
 
 USING_NS_CC;
 
-#define kExpandZone 20
-#define kSafeZone   40
-
 class Button : public ui::Widget
 {
 public:
@@ -22,13 +19,19 @@ public:
         DRAGOUT,
         LONGPUSH
     };
+    
+    enum Zone
+    {
+        CONTENT = 0,
+        EXPAND,
+        SAFE
+    };
         
     static Button* create(Rect content, Rect expand, Rect safe);
     
-    void setContentZone(Rect content);
-    void setExpandZone(Rect expand);
-    void setSafeZone(Rect safe);
-    
+    void setZone(Rect rect, Zone zone);
+    Rect getZone(Zone zone);
+
     void setAction(std::function<void()> callback);
     
     void addItem(Node* item, State state);
@@ -39,7 +42,7 @@ public:
     
 protected:
     
-    bool init(Rect content, Rect expand, Rect safe);
+    bool initWithZoneSizes(Rect content, Rect expand, Rect safe);
     
     virtual void setState(State state);
     State _state;
@@ -53,11 +56,7 @@ protected:
     Rect _expand;
     Rect _safe;
     
-    bool eligibleTouch;
-    
-    bool touchInContentZone(Touch *pTouch);
-    bool touchInExpandZone(Touch *pTouch);
-    bool touchInSafeZone(Touch *pTouch);
+    bool touchInZone(Touch *pTouch, Zone zone);
     
     bool onTouchBegan(Touch *pTouch, Event *pEvent);
     void onTouchMoved(Touch *pTouch, Event *pEvent);

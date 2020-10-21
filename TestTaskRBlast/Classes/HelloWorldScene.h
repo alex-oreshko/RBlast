@@ -26,6 +26,7 @@
 #define __HELLOWORLD_SCENE_H__
 
 #include "cocos2d.h"
+
 #include "Button.hpp"
 #include "LongPushButton.hpp"
 
@@ -44,6 +45,9 @@ public:
     CREATE_FUNC(HelloWorld);
     
 private:
+    
+    void setupScane();
+    
     cocos2d::Sprite *square;
     Button* button;
     LongPushButton* longPushButton;

@@ -82,6 +82,20 @@ bool HelloWorld::init()
     menu->setPosition(Vec2::ZERO);
     this->addChild(menu, 1);
 
+    setupScane();
+    
+    return true;
+}
+
+
+void HelloWorld::menuCloseCallback(Ref* pSender)
+{
+    //Close the cocos2d-x game scene and quit the application
+    Director::getInstance()->end();
+}
+
+void HelloWorld::setupScane()
+{
     square = Sprite::create("square.png");
     square->setPosition(Point(260, 400));
     addChild(square);
@@ -151,6 +165,15 @@ bool HelloWorld::init()
     longPushButton->setAction([&](){
         auto rotate = RotateBy::create(0.1f, 360);
         square->runAction(rotate);
+        
+        Rect expand = longPushButton->getZone(Button::EXPAND);
+        Rect safe = longPushButton->getZone(Button::SAFE);
+        expand.origin = expand.origin - Vec2(1, 1);
+        expand.size = expand.size + Size(2, 2);
+        safe.origin = safe.origin - Vec2(2, 2);
+        safe.size = safe.size + Size(4, 4);
+        longPushButton->setZone(expand, Button::EXPAND);
+        longPushButton->setZone(safe, Button::SAFE);
     });
     
     longPushButton->setLongPushAction([&](){
@@ -160,21 +183,5 @@ bool HelloWorld::init()
         longPushButton->runAction(spawn);
     });
     
-
-        
-    return true;
-}
-
-
-void HelloWorld::menuCloseCallback(Ref* pSender)
-{
-    //Close the cocos2d-x game scene and quit the application
-    Director::getInstance()->end();
-
-    /*To navigate back to native iOS screen(if present) without quitting the application  ,do not use Director::getInstance()->end() as given above,instead trigger a custom event created in RootViewController.mm as below*/
-
-    //EventCustom customEndEvent("game_scene_close_event");
-    //_eventDispatcher->dispatchEvent(&customEndEvent);
-
 
 }

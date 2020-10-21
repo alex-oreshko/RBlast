@@ -5,7 +5,7 @@
 LongPushButton* LongPushButton::create(Rect content, Rect expand, Rect safe)
 {
     LongPushButton *button = new (std::nothrow) LongPushButton;
-    if (button && button->init(content, expand, safe))
+    if (button && button->initWithZoneSizes(content, expand, safe))
     {
         button->autorelease();
         return button;
@@ -14,9 +14,9 @@ LongPushButton* LongPushButton::create(Rect content, Rect expand, Rect safe)
     return nullptr;
 }
 
-bool LongPushButton::init(Rect content, Rect expand, Rect safe)
+bool LongPushButton::initWithZoneSizes(Rect content, Rect expand, Rect safe)
 {
-    if (Button::init(content, expand, safe))
+    if (Button::initWithZoneSizes(content, expand, safe))
     {
         drawNode = DrawNode::create();
         addChild(drawNode, 1);
@@ -34,23 +34,20 @@ void LongPushButton::setLongPushAction(std::function<void()> callback)
 
 void LongPushButton::onTouchMoved(Touch *pTouch, Event *pEvent)
 {
-    if (touchInExpandZone(pTouch) && eligibleTouch)
+    if (touchInZone(pTouch, EXPAND) && _state != IDLE)
     {
         if (_state == LONGPUSH)
             return;
         setState(State::PUSHED);
     }
-    else if (touchInSafeZone(pTouch) && eligibleTouch)
+    else if (touchInZone(pTouch, SAFE) && _state != IDLE)
     {
         if (_state == LONGPUSH)
             return;
         setState(State::DRAGOUT);
     }
     else
-    {
-        eligibleTouch = false;
         setState(State::IDLE);
-    }
         
 }
 

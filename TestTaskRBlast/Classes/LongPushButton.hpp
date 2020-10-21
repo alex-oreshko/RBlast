@@ -19,7 +19,7 @@ public:
     
 protected:
     
-    bool init(Rect content, Rect expand, Rect safe);
+    bool initWithZoneSizes(Rect content, Rect expand, Rect safe);
     
     void setState(State state);
     

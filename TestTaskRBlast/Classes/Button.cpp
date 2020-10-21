@@ -4,7 +4,7 @@
 Button* Button::create(Rect content, Rect expand, Rect safe)
 {
     Button *button = new (std::nothrow) Button;
-    if (button && button->init(content, expand, safe))
+    if (button && button->initWithZoneSizes(content, expand, safe))
     {
         button->autorelease();
         return button;
@@ -13,17 +13,17 @@ Button* Button::create(Rect content, Rect expand, Rect safe)
     return nullptr;
 }
 
-bool Button::init(Rect content, Rect expand, Rect safe)
+bool Button::initWithZoneSizes(Rect content, Rect expand, Rect safe)
 {
     // invoke an overridden init() at first
     if (!Widget::init()) {
         return false;
     }
     
-    setContentZone(content);
-    setExpandZone(expand);
-    setSafeZone(safe);
-    
+    setZone(content, CONTENT);
+    setZone(expand, EXPAND);
+    setZone(safe, SAFE);
+        
     _state = State::IDLE;
         
     auto dispatcher = Director::getInstance()->getEventDispatcher();
@@ -32,63 +32,58 @@ bool Button::init(Rect content, Rect expand, Rect safe)
     listener->onTouchBegan = CC_CALLBACK_2(Button::onTouchBegan, this);
     listener->onTouchMoved = CC_CALLBACK_2(Button::onTouchMoved, this);
     listener->onTouchEnded = CC_CALLBACK_2(Button::onTouchEnded, this);
-
     dispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
-    
     return true;
+    
 }
 
 Button::~Button()
 {
     LOG("~Button\n");
-    for (Vector<Node*>::iterator it = items.begin() ; it != items.end(); ++it)
+    for (auto node : items)
     {
-        Node* node = *it;
         char* states = (char*)node->getUserData();
         free(states);
     }
     items.clear();
 }
 
-void Button::setContentZone(Rect content)
+void Button::setZone(Rect rect, Zone zone)
 {
-    _content = content;
     
-    #if defined(DEBUG)
+    if (zone == CONTENT)
+        _content = rect;
+    else if (zone == EXPAND)
+        _expand = rect;
+    else if (zone == SAFE)
+        _safe = rect;
     
-        DrawNode* drawNode = DrawNode::create();
-        drawNode->drawRect(content.origin, content.origin + content.size, Color4F(1, 1, 1, 1));
-        addChild(drawNode);
-        
-    #endif
+#if defined(DEBUG)
+    for (auto child : getChildren())
+        if (child->getTag() == zone + 1)
+        {
+            removeChild(child);
+            break;
+        }
+
+    DrawNode* drawNode = DrawNode::create();
+    drawNode->setTag(zone + 1);
+    drawNode->drawRect(rect.origin, rect.origin + rect.size, Color4F(1, 1, 1, 1));
+    addChild(drawNode);
+#endif
 }
 
-void Button::setExpandZone(Rect expand)
+Rect Button::getZone(Zone zone)
 {
-    _expand = expand;
-    
-    #if defined(DEBUG)
-    
-        DrawNode* drawNode = DrawNode::create();
-        drawNode->drawRect(expand.origin, expand.origin + expand.size, Color4F(1, 1, 1, 1));
-        addChild(drawNode);
-        
-    #endif
-}
-
-void Button::setSafeZone(Rect safe)
-{
-    _safe = safe;
-    
-    #if defined(DEBUG)
-    
-        DrawNode* drawNode = DrawNode::create();
-        drawNode->drawRect(safe.origin, safe.origin + safe.size, Color4F(1, 1, 1, 1));
-        addChild(drawNode);
-        
-    #endif
-
+    Rect rect;
+    if (zone == CONTENT)
+        rect = _content;
+    else if (zone == EXPAND)
+        rect = _expand;
+    else if (zone == SAFE)
+        rect = _safe;
+    return rect;
 }
 
 void Button::setState(State state)
@@ -98,9 +93,8 @@ void Button::setState(State state)
     
     _state = state;
     
-    for (Vector<Node*>::iterator it = items.begin() ; it != items.end(); ++it)
+    for (auto node : items)
     {
-        Node* node = *it;
         char* states = (char*)node->getUserData();
         node->setVisible(*(states + state) == 1);
     }
@@ -108,20 +102,18 @@ void Button::setState(State state)
 
 void Button::addItem(Node* item, State state)
 {
-    char *states;
     if (!items.contains(item))
     {
         items.pushBack(item);
-        char* states = (char*)malloc(sizeof(char) * (LONGPUSH + 1));
-        for (int i = 0; i <= LONGPUSH; i++)
-            *(states + i) = (i == state)?1:0;
+        char* states = (char*)calloc(sizeof(char), (LONGPUSH + 1));
+        *(states + state) = 1;
         item->setUserData(states);
         item->setVisible(state == _state);
         addChild(item);
     }
     else
     {
-        states = (char*)item->getUserData();
+        char *states = (char*)item->getUserData();
         *(states + state) = 1;
     }
 }
@@ -139,18 +131,18 @@ void Button::setAction(std::function<void()> callback)
 void Button::sendEvent()
 {
     Button* button = this;
-    
-    char name[128];
-    if (_state == IDLE)
-        sprintf(name, "%s", "button: idle");
-    else if (_state == DRAGOUT)
-        sprintf(name, "%s", "button: dragout");
-    else if (_state == PUSHED)
-        sprintf(name, "%s", "button: push");
-    else if (_state == LONGPUSH)
-        sprintf(name, "%s", "button: long push");
         
     auto dispatcher = Director::getInstance()->getEventDispatcher();
+    
+    std::string name;
+    if (_state == IDLE)
+        name = "button: idle";
+    else if (_state == DRAGOUT)
+        name = "button: dragout";
+    else if (_state == PUSHED)
+        name = "button: push";
+    else if (_state == LONGPUSH)
+        name = "button: long push";
     
     EventCustom event(name);
     event.setUserData(button);
@@ -158,35 +150,25 @@ void Button::sendEvent()
     dispatcher->dispatchEvent(&event);
 }
 
-
 bool Button::onTouchBegan(Touch *pTouch, Event *pEvent)
 {
-    if (touchInExpandZone(pTouch))
+    if (touchInZone(pTouch, EXPAND))
     {
-        eligibleTouch = true;
         setState(State::PUSHED);
+        return true;
     }
     else
-        eligibleTouch = false;
-    return true;
+        return false;
 }
 
 void Button::onTouchMoved(Touch *pTouch, Event *pEvent)
 {
-    if (touchInExpandZone(pTouch) && eligibleTouch)
-    {
+    if (touchInZone(pTouch, EXPAND) && _state != IDLE)
         setState(State::PUSHED);
-    }
-    else if (touchInSafeZone(pTouch) && eligibleTouch)
-    {
+    else if (touchInZone(pTouch, SAFE) && _state != IDLE)
         setState(State::DRAGOUT);
-    }
     else
-    {
-        eligibleTouch = false;
-        setState(State::IDLE);
-    }
-        
+        setState(State::IDLE);        
 }
 
 void Button::onTouchEnded(Touch *pTouch, Event *pEvent)
@@ -205,20 +187,16 @@ void Button::onTouchCancelled(Touch *pTouch, Event *pEvent)
     setState(State::IDLE);
 }
 
-bool Button::touchInContentZone(Touch *pTouch)
+bool Button::touchInZone(Touch *pTouch, Zone zone)
 {
     Point p = convertTouchToNodeSpace(pTouch);
-    return _content.containsPoint(p);
+    Rect rect;
+    if (zone == CONTENT)
+        rect = _content;
+    else if (zone == EXPAND)
+        rect = _expand;
+    else if (zone == SAFE)
+        rect = _safe;
+    return rect.containsPoint(p);
 }
 
-bool Button::touchInExpandZone(Touch *pTouch)
-{
-    Point p = convertTouchToNodeSpace(pTouch);
-    return _expand.containsPoint(p);
-}
-
-bool Button::touchInSafeZone(Touch *pTouch)
-{
-    Point p = convertTouchToNodeSpace(pTouch);
-    return _safe.containsPoint(p);
-}
